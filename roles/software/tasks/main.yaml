@@ -1,0 +1,23 @@
+# - name: Add wireshark stable repository from PPA and install its signing key on Debian target
+#   ansible.builtin.apt_repository:
+#     repo: 'ppa:wireshark-dev/stable'
+
+- name: Update the repository cache and install some debugging tools
+  apt:
+    update_cache: yes
+    pkg:
+    - curl
+    - htop
+    - net-tools
+    - vim
+    - wget
+    - bat
+    - exa
+
+- name: Create a symbolic link
+  ansible.builtin.file:
+    src: /usr/bin/batcat
+    dest: /user/{{ account }}/.local/bin/bat
+    owner: alex
+    group: alex
+    state: link

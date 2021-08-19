@@ -1,0 +1,17 @@
+- name: Ubuntu configuration
+  hosts: localhost
+  become: true
+  roles:
+
+    - role: user_account
+
+    - role: software
+
+    - role: modern_linux
+
+    - role: geerlingguy.docker
+      resolv_nameservers:
+        - "8.8.8.8"
+        - "8.8.4.4"
+  vars:
+    account: alex

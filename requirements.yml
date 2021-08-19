@@ -1,0 +1,8 @@
+---
+roles:
+  - src: ahuffman.resolv
+  - src: geerlingguy.docker
+  # - src: xanmanning.k3s
+
+collections:
+  - name: community.general
