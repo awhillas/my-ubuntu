@@ -1,2 +1,16 @@
 # See: https://github.com/ibraheemdev/modern-unix
 
+
+- name: install yq v4.12.0
+  ansible.builtin.unarchive:
+    src: https://github.com/mikefarah/yq/releases/download/v4.12.0/yq_linux_amd64.tar.gz
+    dest: /usr/local/bin
+    group: wheel
+    remote_src: yes
+
+- name: Create a symbolic link to yq executable
+  ansible.builtin.file:
+    src: /usr/local/bin/yq_linux_amd64
+    dest: /usr/local/bin/yq
+    group: wheel
+    state: link

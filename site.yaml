@@ -8,6 +8,8 @@
     - role: software
 
     - role: modern_linux
+      tags:
+        - modern
 
     - role: geerlingguy.docker
       resolv_nameservers:
