@@ -75,14 +75,13 @@ EOF
 cat > ./cloudbuild.yaml <<EOF
 steps:
 
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build',
-         '-t', 'gcr.io/\$PROJECT_ID/\${_IMAGE_NAME}:\$SHORT_SHA',
-         '-t', 'gcr.io/\$PROJECT_ID/\${_IMAGE_NAME}:latest', '.'
-        ]
-
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/\$PROJECT_ID/\${_IMAGE_NAME}:\$SHORT_SHA']
+- name: 'gcr.io/kaniko-project/executor:latest'
+  - --dockerfile=Dockerfile
+  - --context=.
+  - --destination=gcr.io/\$PROJECT_ID/\${_IMAGE_NAME}:\$SHORT_SHA
+  - --destination=gcr.io/\$PROJECT_ID/\${_IMAGE_NAME}:latest
+  - --cache=true
+  waitFor: ['-']
 
 substitutions:
   _IMAGE_NAME: ml/$name
