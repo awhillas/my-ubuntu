@@ -1,8 +1,10 @@
 - name: Download oh-my-posh
   get_url:
     url: https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64
-    dest: /usr/local/bin/posh-linux-amd64
+    dest: /usr/local/bin/oh-my-posh
     mode: u+x
+    owner: "{{ account }}"
+    group: wheel
 
 - name: create the themes dir
   file:
@@ -14,7 +16,7 @@
   unarchive:
     src: https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip
     dest: "/home/{{ account }}/.local/poshthemes/"
-    mode: u+rw
+    mode: 775
     owner: "{{ account }}"
     group: wheel
     remote_src: true

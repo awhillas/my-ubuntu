@@ -20,7 +20,7 @@
 - name: Create a symbolic link
   ansible.builtin.file:
     src: /usr/bin/batcat
-    dest: /home/{{ account }}/.local/bin/bat
+    dest: "/home/{{ account }}/bin/bat"
     owner: "{{ account }}"
     group: "{{ account }}"
     state: link

@@ -27,20 +27,22 @@
     createhome: yes
     shell: /bin/bash
 
-- name: Create ~/.local/bin
-  ansible.builtin.file:
-    path: "/user/{{ account }}/.local/bin"
+- name: "Create /home/{{ account }}/.local/bin"
+  file:
+    path: "/home/{{ account }}/.local/bin"
     state: directory
     mode: '0755'
 
-- name: Create ~/bin
-  ansible.builtin.file:
-    path: "/user/{{ account }}/bin"
+- name: "Create /home/{{ account }}/bin"
+  file:
+    path: "/home/{{ account }}/bin"
     state: directory
+    owner: "{{ account }}"
+    group: "{{ account }}"
     mode: '0755'
 
 - name: copy over .bash_aliases
-  ansible.builtin.copy:
+  copy:
     src: .bash_aliases
     dest: "/home/{{ account }}/.bash_aliases"
     owner: "{{ account }}"
