@@ -1,0 +1,25 @@
+- name: Download oh-my-posh
+  get_url:
+    url: https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64
+    dest: /usr/local/bin/posh-linux-amd64
+    mode: u+x
+
+- name: create the themes dir
+  file:
+    path: "/home/{{ account }}/.local/poshthemes"
+    state: directory
+    mode: u+rw
+
+- name: download the themes
+  unarchive:
+    src: https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip
+    dest: "/home/{{ account }}/.local/poshthemes/"
+    mode: u+rw
+    owner: "{{ account }}"
+    group: wheel
+    remote_src: true
+
+- name: Set the default theme (iterm2)
+  lineinfile:
+    path: "/home/{{ account }}/.bashrc"
+    line: 'eval "$(oh-my-posh --init --shell bash --config ~/.local/poshthemes/iterm2.omp.json)"'
