@@ -14,6 +14,8 @@
     - role: oh-my-posh
       tags:
         - shell
+    
+    -role: nerd-fonts
 
     # - role: geerlingguy.docker
 
