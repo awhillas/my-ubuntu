@@ -31,6 +31,8 @@
   file:
     path: "/home/{{ account }}/.local/bin"
     state: directory
+    owner: "{{ account }}"
+    group: "{{ account }}"
     mode: '0755'
 
 - name: "Create /home/{{ account }}/bin"
