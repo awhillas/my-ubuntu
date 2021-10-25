@@ -15,7 +15,12 @@
       tags:
         - shell
     
-    -role: nerd-fonts
+    - role: nerd-fonts
+
+    # - role: chrome
+    #   tags:
+    #     - apps
+    #     - chrome
 
     # - role: geerlingguy.docker
 
