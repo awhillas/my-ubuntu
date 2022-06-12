@@ -1,20 +1,25 @@
 cat > $1 <<EOF
 import argparse
 import sys
+from pathlib import Path
+from typing import *
 
-from loguru import logger
+from dotenv import load_dotenv
+from loguru import logger as log
 
-# See: https://github.com/Delgan/loguru
-logger.add(sys.stderr, format="{time} {level} {message}", filter="my_module", level="INFO")
+load_dotenv()
 
-def main(config):
-    logger.debug("Lets get this party started {}!", config)
+def main(filepath: Path):
+    log.debug("Processing {}!", filepath)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument("config", help="Path to config file")
-    args = parser.parse_args()
+    parser = argparse.ArgumentParser(description="", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("filepath", type=Path, help="Input file")
 
-    main(**vars(args))
-
+    try:
+        args = parser.parse_args()
+        main(**vars(args))
+    except:
+        parser.print_help()
+        sys.exit(0)
 EOF
