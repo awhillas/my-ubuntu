@@ -50,3 +50,9 @@
     owner: "{{ account }}"
     group: "{{ account }}"
     mode: '0644'
+
+- name: Make sure you can't pip install globally
+  lineinfile:
+    dest: /home/foo/.bashrc
+    line: "export PIP_REQUIRE_VIRTUALENV=true"
+    owner: foo
