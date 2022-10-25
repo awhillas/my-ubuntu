@@ -1,0 +1,19 @@
+- name: Ubuntu configuration for WSL
+  hosts: localhost
+  become: true
+  roles:
+
+    - role: user_account
+
+    - role: software
+
+    - role: modern_linux
+      tags:
+        - modern
+
+    - role: oh-my-posh
+      tags:
+        - shell
+
+  vars:
+    account: alex
