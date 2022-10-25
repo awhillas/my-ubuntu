@@ -53,6 +53,6 @@
 
 - name: Make sure you can't pip install globally
   lineinfile:
-    dest: /home/foo/.bashrc
+    dest: /home/{{ account }}/.bashrc
     line: "export PIP_REQUIRE_VIRTUALENV=true"
-    owner: foo
+    owner: "{{ account }}"
